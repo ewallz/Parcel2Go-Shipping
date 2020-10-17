@@ -338,78 +338,78 @@ class Parcel2Go_Api
         }
        
 		
-					// Displaying something related
-				if( $order->get_shipping_first_name() != $order->get_billing_first_name() ) {
-					return (object) [
-            "DeliveryAddress" => array(
-                "CountryIsoCode" => "GBR",
-                "Property" => $order->get_shipping_address_1(),
-                "Street" => $order->get_shipping_address_2(),
-                "Postcode" => $order->get_shipping_postcode(),
-                "Town" => $order->get_shipping_city(),
-                "Email" => $order->get_billing_email(),
-                "Phone" => $order->get_billing_phone(),
-                "ContactName" => $order->get_shipping_first_name() . " " . $order->get_shipping_last_name(),
-                "Country" => $order->get_shipping_country(),
-                "County" => $order->get_shipping_state(),
-                "SpecialInstructions" => $order->get_customer_note()
-            ),
-			
-            "CollectionAddress" => array(
-                "CountryIsoCode" => "GBR",
-                "Property" =>  $this->options['collection_property'],
-                "Street" =>  $this->options['collection_street'],
-                "Postcode" =>  $this->options['collection_postcode'],
-                "Town" =>  $this->options['collection_town'],
-                "Email" =>  $this->options['collection_email'],
-                "Phone" =>  $this->options['collection_phone'],
-                "ContactName" => $this->options['collection_firstname'] . " " . $this->options['collection_lastname'],
-                "Country" =>  $this->options['collection_country'],
-                "County" =>  $this->options['collection_county']
-            ),
-            "Box" => $item,
-            "Multiple" => $items > 1,
-            "Items" => $items,
-            "IncludeCover" => (isset($this->options['default_include_cover']) && ($this->options['default_include_cover'] == "on")),
-            "OrderItems" => $orderItems,
-            "VatNumber" => $this->options['default_vat_number']
-        ];
-				} else {
-					return (object) [
-            "DeliveryAddress" => array(
-                "CountryIsoCode" => "GBR",
-                "Property" => $order->get_shipping_address_1(),
-                "Street" => $order->get_shipping_address_2(),
-                "Postcode" => $order->get_shipping_postcode(),
-                "Town" => $order->get_shipping_city(),
-                "Email" => $order->get_billing_email(),
-                "Phone" => $order->get_billing_phone(),
-                "ContactName" => $order->get_billing_first_name() . " " . $order->get_billing_last_name(),
-                "Country" => $order->get_shipping_country(),
-                "County" => $order->get_shipping_state(),
-                "SpecialInstructions" => $order->get_customer_note()
-            ),
-			
-            "CollectionAddress" => array(
-                "CountryIsoCode" => "GBR",
-                "Property" =>  $this->options['collection_property'],
-                "Street" =>  $this->options['collection_street'],
-                "Postcode" =>  $this->options['collection_postcode'],
-                "Town" =>  $this->options['collection_town'],
-                "Email" =>  $this->options['collection_email'],
-                "Phone" =>  $this->options['collection_phone'],
-                "ContactName" => $this->options['collection_firstname'] . " " . $this->options['collection_lastname'],
-                "Country" =>  $this->options['collection_country'],
-                "County" =>  $this->options['collection_county']
-            ),
-            "Box" => $item,
-            "Multiple" => $items > 1,
-            "Items" => $items,
-            "IncludeCover" => (isset($this->options['default_include_cover']) && ($this->options['default_include_cover'] == "on")),
-            "OrderItems" => $orderItems,
-            "VatNumber" => $this->options['default_vat_number']
-        ];
-				}
+		// 1.0.4b - check if send to different address - ewallz
+		if( $order->get_shipping_first_name() != $order->get_billing_first_name() ) {
+		return (object) [
+			    "DeliveryAddress" => array(
+				"CountryIsoCode" => "GBR",
+				"Property" => $order->get_shipping_address_1(),
+				"Street" => $order->get_shipping_address_2(),
+				"Postcode" => $order->get_shipping_postcode(),
+				"Town" => $order->get_shipping_city(),
+				"Email" => $order->get_billing_email(),
+				"Phone" => $order->get_billing_phone(),
+				"ContactName" => $order->get_shipping_first_name() . " " . $order->get_shipping_last_name(),
+				"Country" => $order->get_shipping_country(),
+				"County" => $order->get_shipping_state(),
+				"SpecialInstructions" => $order->get_customer_note()
+			    ),
+
+			    "CollectionAddress" => array(
+				"CountryIsoCode" => "GBR",
+				"Property" =>  $this->options['collection_property'],
+				"Street" =>  $this->options['collection_street'],
+				"Postcode" =>  $this->options['collection_postcode'],
+				"Town" =>  $this->options['collection_town'],
+				"Email" =>  $this->options['collection_email'],
+				"Phone" =>  $this->options['collection_phone'],
+				"ContactName" => $this->options['collection_firstname'] . " " . $this->options['collection_lastname'],
+				"Country" =>  $this->options['collection_country'],
+				"County" =>  $this->options['collection_county']
+			    ),
+			    "Box" => $item,
+			    "Multiple" => $items > 1,
+			    "Items" => $items,
+			    "IncludeCover" => (isset($this->options['default_include_cover']) && ($this->options['default_include_cover'] == "on")),
+			    "OrderItems" => $orderItems,
+			    "VatNumber" => $this->options['default_vat_number']
+			];
+		} else {
+				return (object) [
+			    "DeliveryAddress" => array(
+				"CountryIsoCode" => "GBR",
+				"Property" => $order->get_shipping_address_1(),
+				"Street" => $order->get_shipping_address_2(),
+				"Postcode" => $order->get_shipping_postcode(),
+				"Town" => $order->get_shipping_city(),
+				"Email" => $order->get_billing_email(),
+				"Phone" => $order->get_billing_phone(),
+				"ContactName" => $order->get_billing_first_name() . " " . $order->get_billing_last_name(),
+				"Country" => $order->get_shipping_country(),
+				"County" => $order->get_shipping_state(),
+				"SpecialInstructions" => $order->get_customer_note()
+			    ),
+
+			    "CollectionAddress" => array(
+				"CountryIsoCode" => "GBR",
+				"Property" =>  $this->options['collection_property'],
+				"Street" =>  $this->options['collection_street'],
+				"Postcode" =>  $this->options['collection_postcode'],
+				"Town" =>  $this->options['collection_town'],
+				"Email" =>  $this->options['collection_email'],
+				"Phone" =>  $this->options['collection_phone'],
+				"ContactName" => $this->options['collection_firstname'] . " " . $this->options['collection_lastname'],
+				"Country" =>  $this->options['collection_country'],
+				"County" =>  $this->options['collection_county']
+			    ),
+			    "Box" => $item,
+			    "Multiple" => $items > 1,
+			    "Items" => $items,
+			    "IncludeCover" => (isset($this->options['default_include_cover']) && ($this->options['default_include_cover'] == "on")),
+			    "OrderItems" => $orderItems,
+			    "VatNumber" => $this->options['default_vat_number']
+			];
+			}
        
         
     }
